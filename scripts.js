@@ -1,9 +1,7 @@
 
 
 const container = document.querySelector("#container");
-const numBox = 20;
-//document.getElementById("container").style.height = numBox*10+"px";
-//document.getElementById("container").style.width = numBox*10+"px";
+const numBox = 10;
 
 
 
@@ -13,20 +11,22 @@ const contStyle = getComputedStyle(container);
 const contHeight = parseInt(contStyle.height);
 const contWidth= contStyle.width;
 
-//console.log(contHeight);
-const pixelSize  = (contHeight / numBox);
-//console.log("PIXEL SIZE" + pixelSize);
 
+const pixelSize  = (contHeight / numBox);
+
+var mouseDown = 0;
+document.body.onmousedown = function(){
+    mouseDown = 1;
+    //alert("hee");
+}
+
+document.body.onmouseup = function(){
+    mouseDown = 0;
+}
 
 
 
 for (i = 0; i<numBox; i++){
-    /*console.log("created" + i);
-    const grid = document.createElement('div');
-    grid.setAttribute('class','pixel');
-    grid.textContent = i;
-    container.appendChild(grid);
-    */
     for (j = 0; j<numBox; j++){
         
         let pixel = document.createElement('div');
@@ -34,11 +34,8 @@ for (i = 0; i<numBox; i++){
 
         pixel.setAttribute('class','pixel');
         pixel.setAttribute('id' , pixelID );
-        //console.log(pixel.getAttribute('id'));
-        //pixel.style.backgroundColor = "blue";
         pixel.style.height = pixelSize+"px";
         pixel.style.width=pixelSize+"px";
-       // pixel.style.borderStyle = "solid";
         
         
         
@@ -46,7 +43,8 @@ for (i = 0; i<numBox; i++){
         container.appendChild(pixel);
         let pixelStyle = getComputedStyle(pixel);
         pixel.addEventListener('mousemove', function (e){
-            const x = getComputedStyle(e.target);
+            if (mouseDown == 1){
+                const x = getComputedStyle(e.target);
             console.log(x.backgroundColor == 'rgb(0, 128, 0)');
             if(x.backgroundColor == 'rgb(0, 128, 0)'){
                 e.target.style.background = 'blue'
@@ -54,6 +52,8 @@ for (i = 0; i<numBox; i++){
                 e.target.style.background = 'green';
             }
             */
+            }
+            
 
 
             
